@@ -6,7 +6,7 @@ public class dTable
 	  private int did;
 	  private String  dname;
 	  private udTable udTable;
-	  sssss
+	  shu
 
 	public dTable()
 	{

@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--这个是要引用的SQL语句类型文件夹-->
+<mapper namespace="com.ywb.mapper.UserMapper">
+    <resultMap id="udtable" type="udTable">
+       <association property="userTable" javaType="userTable" column="uid" select="two"></association>
+        <association property="dTable" javaType="dTable" column="did" select="three"></association>
+
+    </resultMap>
+
+
+<!--    <resultMap id="udtable" type="udtable">-->
+<!--        <association property="uid" javaType="userTable" column="did"-->
+
+<!--                     select="three"-->
+<!--        >-->
+<!--        </association>-->
+
+<!--    </resultMap>-->
+<!--        <id property="id" column="id"></id>-->
+<!--        <result property="userid" column="userid"></result>-->
+<!--    <result property="username" column="username"></result>-->
+<!--        <result property="userpass" column="userpass"></result>-->
+<!--        <result property="userpone" column="userpone"></result>-->
+<!--        <result property="usersex" column="usersex"></result>-->
+<!--        <result property="usertype" column="usertype"></result>-->
+<!--      <association property="userinfo" column="id" select="two"></association>-->
+
+
+
+
+
+
+
+
+
+<!--&lt;!&ndash;    <result column="user_age" property="userage"></result>&ndash;&gt;-->
+
+
+<!--&lt;!&ndash;    </resultMap>&ndash;&gt;-->
+<!--&lt;!&ndash;  根据ID来获取需要的SQL语句，    这个是传入参数的属性                这个是实体类的属性 &ndash;&gt;-->
+<!--&lt;!&ndash;  查询&ndash;&gt;-->
+<!--<select id="findbyuserno" parameterType="java.lang.Integer" resultType="com.ywb.bean.userTable">-->
+<!--  select *-->
+<!--  from usertable-->
+
+<!--</select>-->
+<!--&lt;!&ndash;  删除&ndash;&gt;-->
+<!-- <delete id="deleteuser" parameterType="java.lang.Integer"  >-->
+<!--     delete-->
+<!--     from usertable-->
+<!--     where userid = #{userid}-->
+<!-- </delete>-->
+<!--&lt;!&ndash;  修改&ndash;&gt;-->
+<!--  <update id="updateTable" parameterType="com.ywb.bean.userTable">-->
+<!--        update-->
+<!--        usertable-->
+<!--   set username=#{username}-->
+<!--   where userid=#{userid}-->
+<!--  </update>-->
+<!--&lt;!&ndash;  增加&ndash;&gt;-->
+<!--  <insert id="addinfo" parameterType="com.ywb.bean.userTable">-->
+<!--         insert-->
+<!--         into usertable-->
+<!--       ( username,-->
+<!--         userpass)-->
+<!--         values (#{username},#{userpass})-->
+
+
+<!--  </insert>-->
+<!--    <select id="findMap" parameterType="com.ywb.bean.userTable" resultMap="userMap">-->
+<!--    select *-->
+<!--  from usertable-->
+<!--    </select>-->
+
+<!--   <select id="querall" parameterType="userTable" >-->
+<!--    select *-->
+<!--    from usertable-->
+<!--     <where>-->
+<!--        <if test="username !=0 and userid !=null">-->
+<!--            and username =#{username}-->
+<!--        </if>-->
+<!--          <choose>-->
+<!--              <when test="userid !=0 and userid !=null">-->
+<!--                  and userid &lt; =10-->
+<!--              </when>-->
+<!--<otherwise>-->
+<!--    and userid =6-->
+<!--</otherwise>-->
+<!--          </choose>-->
+
+<!--     </where>-->
+<!--   </select>-->
+<!--多条件查询-->
+
+<!--    <select id="querall" parameterType="userTable" resultType="userTable">-->
+<!--        select  *-->
+<!--        from usertable-->
+<!--        <where>-->
+<!--            <if test="username!=null and username!=''">-->
+<!--                and username=#{username}-->
+
+<!--            </if>-->
+<!--           <choose>-->
+<!--        <when test="usersex!=null and usersex!=''">-->
+<!--               and usersex=#{usersex}-->
+<!--        </when>-->
+<!--           </choose>-->
+
+<!--           <if test="usertype!=null and usertype!=''">-->
+<!--               and usertype=#{usertype}-->
+
+<!--           </if>-->
+
+
+
+<!--        </where>-->
+
+<!--    </select>-->
+
+<!--    <select id="querall2" parameterType="userTable" resultType="userTable">-->
+<!--        select  *-->
+<!--        from usertable-->
+<!--        <trim prefix="where" prefixOverrides="and |or">-->
+<!--            <if test="username!=null and username!=''">-->
+<!--                and username=#{username}-->
+
+<!--            </if>-->
+<!--            <choose>-->
+<!--                <when test="usersex!=null and usersex!=''">-->
+<!--                    and usersex=#{usersex}-->
+<!--                </when>-->
+<!--            </choose>-->
+
+<!--            <if test="usertype!=null and usertype!=''">-->
+<!--                and usertype=#{usertype}-->
+
+<!--            </if>-->
+
+
+
+<!--        </trim>-->
+
+<!--    </select>-->
+
+<!--&lt;!&ndash;    修改&ndash;&gt;-->
+<!--    <update id="updater1" parameterType="userTable" >-->
+<!--          update usertable-->
+<!--           <if test="userid!=null and userid!=0">-->
+
+<!--              <set>-->
+<!--                 <if test="usersex!=null and usersex!=''">-->
+<!--                     usersex=#{usersex}-->
+<!--                 </if>-->
+
+<!--              </set>-->
+<!--            <where>-->
+<!--                userid=#{userid}-->
+<!--            </where>-->
+
+<!--           </if>-->
+
+<!--    </update>-->
+<!--&lt;!&ndash;查询&ndash;&gt;-->
+<!--<select id="selectTa" parameterType="userTable" resultType="userTable">-->
+
+<!--    select *-->
+<!--    from usertable-->
+<!--    where userid in-->
+<!--    <foreach collection="array" index="index" item="item" open="(" separator="," close=")">-->
+<!--    #{item}-->
+<!--</foreach>-->
+
+
+<!--</select>-->
+
+<!--&lt;!&ndash;    批量插入&ndash;&gt;-->
+<!--  <insert id="insertTa" parameterType="userTable">-->
+<!--         insert-->
+<!--         into usertable-->
+<!--     (username,userpass,userpone,usersex,usertype)-->
+<!--     VALUES-->
+<!--      <foreach collection="list" item="emp" separator=",">-->
+<!--          (#{emp.username}, #{emp.userpass}, #{emp.userpone} ,#{emp.usersex} ,#{emp.usertype})-->
+<!--      </foreach>-->
+
+
+
+
+
+<!--  </insert>-->
+<!--//待条件-->
+
+<!--<select id="one" parameterType="java.lang.Integer" resultMap="udtable">-->
+<!--    select * from udtable where udid=#{udid}-->
+<!--</select>-->
+
+<!--    <select id="two" parameterType="java.lang.Integer" resultType="userTable">-->
+<!--    select * from usertable where userid=#{uid}-->
+<!--</select>-->
+
+<!--    <select id="three" parameterType="java.lang.Integer" resultType="dTable">-->
+<!--    select * from dtable where did=#{did}-->
+<!--</select>-->
+
+    <select id="one" parameterType="java.lang.Integer" resultType="map">
+          select * from udtable
+</select>
+
+    <select id="two" parameterType="java.lang.Integer" resultType="userTable">
+    select * from usertable where userid=#{uid}
+</select>
+
+    <select id="three" parameterType="java.lang.Integer" resultType="dTable">
+    select * from dtable where did=#{did}
+</select>
+
+
+
+</mapper>

@@ -3,6 +3,7 @@ package com.ywb.bean;
 public class dTable
 {
 
+	private int a;
 	  private int did;
 	  private String  dname;
 	  private udTable udTable;
